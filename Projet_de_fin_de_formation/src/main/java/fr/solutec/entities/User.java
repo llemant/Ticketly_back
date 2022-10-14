@@ -1,8 +1,11 @@
 package fr.solutec.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +28,6 @@ public class User {
 	private Boolean organisateur;
 	private int nbToken;
 	private int nbPoint;
-	private User parrain;
-	private User filleul;
 	private String nomEntreprise;
 	private String siret;
 	private int nbTokenEvent;
