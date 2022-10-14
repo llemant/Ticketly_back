@@ -47,14 +47,7 @@ public class UserRest {
 		return userRepos.findById(id);
 	}
 
-	@PostMapping
-	public User addUser(@RequestBody User u) {
-		User newUser = userRepos.save(u);
-
-		return newUser;
-	}
-
-	@PostMapping("/login")
+	@PostMapping("login")
 	public Optional<User> Connection(@RequestBody User u) {
 
 		Optional<User> user = userRepos.findByLoginAndPassword(u.getLogin(), u.getPassword());
