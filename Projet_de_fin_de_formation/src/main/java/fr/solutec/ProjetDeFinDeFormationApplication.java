@@ -2,6 +2,7 @@ package fr.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.solutec.entities.Event;
+import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
 import fr.solutec.repository.EventRepository;
 import fr.solutec.repository.LieuRepository;
@@ -48,25 +51,39 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			userRepos.save(u);
 		});
 
+		Lieu l1 = new Lieu(null,"France", "Paris", "Rue Francis de Pressensé, Saint-Denis,Seine-Saint-Denis 93200",
+		"Stade de Fance",80000);
+		Lieu l2 = new Lieu(null,"France", "Lille", "17 Place Mendès France, Lille, 59000",
+		"Le Nouveau Siècle",59000);
+		Lieu l3 = new Lieu(null,"Allemagne", "Berlin", "Friedrichstrasse 107, Berlin 10117", "Friedrichstadt-Palast", 10117);
+		
+		Stream.of(l1, l2, l3).forEach(l -> {
+			lieuRepos.save(l);
+		});
+		
+		
+		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney 1", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, u3, l1);
+
+		
+		Stream.of(e1).forEach(e -> {
+			eventRepos.save(e);
+		});
+		
 		System.out.println("Run successful");
 	}
 
 }
-
 /*
- * structure model User :
+ * structure model Event :
  * 
- * private Long id; 
- * private String nom; 
- * private String prenom; 
- * private String login; 
- * private String password; 
- * private String tel; 
- * private String email;
- * private Boolean organisateur; 
- * private int nbToken; 
- * private int nbPoint;
- * private String nomEntreprise;
- * private String siret; 
- * private int nbTokenEvent;
+	private Long id;
+	private String artiste;
+	private String titre;	
+	private int place;
+	private Date date;
+	private String heure;
+	private String genre;
+	private int prix;
+	private User organisateur;
+	private Lieu lieu;
  */
