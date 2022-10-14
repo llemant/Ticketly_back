@@ -58,4 +58,12 @@ public class UserRest {
 		}
 
 	}
+
+	@PostMapping("token/add/{nbTokenAchetes}/{id}")
+	public void addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
+		Optional<User> u = userRepos.findById(id);
+			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
+			u.get().setNbToken(newNbToken);
+	}
+	
 }
