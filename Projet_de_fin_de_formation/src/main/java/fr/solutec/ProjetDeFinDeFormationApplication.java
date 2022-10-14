@@ -33,7 +33,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 				2500, null, null, 0);
 		User u2 = new User(null, "Defossez", "Lise", "defli", "defli123", "0600000002", "relise@esic.fr", false, 10000,
 				2500, null, null, 0);
-		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", false,
+		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", true,
 				10000, 2500, null, null, 0);
 		User u4 = new User(null, "Lajus", "Quentin", "lajqu", "lajqu123", "0600000004", "laquentin@esic.fr", false,
 				10000, 2500, null, null, 0);
