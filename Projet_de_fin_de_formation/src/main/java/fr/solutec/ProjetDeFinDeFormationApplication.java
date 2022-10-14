@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.solutec.entities.User;
+import fr.solutec.repository.EventRepository;
+import fr.solutec.repository.LieuRepository;
 import fr.solutec.repository.UserRepository;
 
 @SpringBootApplication
@@ -17,6 +19,10 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepos;
+	@Autowired
+	private EventRepository eventRepos;	
+	@Autowired
+	private LieuRepository lieuRepos;
 
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
