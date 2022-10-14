@@ -1,5 +1,15 @@
 package fr.solutec.repository;
 
-public interface UserRepository {
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import fr.solutec.entities.User;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+
+	public Optional<User> findByLogin(String login);
+
+	public Optional<User> findByLoginAndPassword(String login, String password);
 
 }
