@@ -5,10 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.User;
@@ -27,6 +29,13 @@ public class UserRest {
 
 	@PostMapping("user")
 	public User createUser(@RequestBody User u) {
+		u.setOrganisateur(false);
+		return userRepos.save(u);
+	}
+	
+	@PostMapping("organisateur")
+	public User createOrganiser(@RequestBody User u) {
+		u.setOrganisateur(true);
 		return userRepos.save(u);
 	}
 
@@ -40,6 +49,11 @@ public class UserRest {
 	@GetMapping("user/login/{login}")
 	public Optional<User> getOneUserByLogin(@PathVariable String login) {
 		return userRepos.findByLogin(login);
+	}
+	
+	@GetMapping("user/email/{email}")
+	public Optional<User> getOneUserByEmail(@PathVariable String email) {
+		return userRepos.findByEmail(email);
 	}
 
 	@GetMapping("user/{id}")
@@ -59,11 +73,14 @@ public class UserRest {
 
 	}
 
-	@PostMapping("token/add/{nbTokenAchetes}/{id}")
-	public void addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
+	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
+	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
-			u.get().setNbToken(newNbToken);
+			User newUser = u.get();
+			newUser.setNbToken(newNbToken);
+			final User updatedUser = userRepos.save(newUser);
+			return newNbToken;
 	}
-	
+		
 }
