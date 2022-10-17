@@ -13,16 +13,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor 
-@AllArgsConstructor 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 public class Event {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String artiste;
-	private String titre;	
+	private String titre;
 	private int place;
 	private Date date;
 	private String heure;
@@ -32,7 +33,5 @@ public class Event {
 	private User organisateur;
 	@ManyToOne
 	private Lieu lieu;
-	
-	
-	
-} 
+
+}
