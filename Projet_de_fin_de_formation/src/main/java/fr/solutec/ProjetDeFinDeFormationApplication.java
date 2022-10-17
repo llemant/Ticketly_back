@@ -54,7 +54,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		});
 
 		Lieu l1 = new Lieu(null,"France", "Paris", "Rue Francis de Pressensé, Saint-Denis, 93200",
-		"Stade de Fance",80000);
+		"StadedeFance",80000);
 		Lieu l2 = new Lieu(null,"France", "Lille", "17 Place Mendès France, Lille, 59000",
 		"Le Nouveau Siècle",59000);
 		Lieu l3 = new Lieu(null,"Allemagne", "Berlin", "Friedrichstrasse 107, Berlin 10117",

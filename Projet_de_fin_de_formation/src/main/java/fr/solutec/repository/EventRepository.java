@@ -17,7 +17,9 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	
 	public Iterable<Event> findByGenre(String genre);
 	
-	public Iterable<Event> findByLieu(String lieu);
+	public Optional<Event> findByLieu(String lieu);
+
+	public Optional<Event> findByArtiste(String artiste);
 	
 	//public Iterable<Event> finBydateandHeure(Date date, String heure);
 	
