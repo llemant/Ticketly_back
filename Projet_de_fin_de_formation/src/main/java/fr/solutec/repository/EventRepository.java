@@ -9,9 +9,9 @@ import fr.solutec.entities.Event;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
 	
-	//public Iterable<Event> findByEventDateAfter(Date d);
+	public Optional<Event> findByDateAfter(Date d);
 
-	//public Iterable<Event> findByEventDateBefore(Date d);
+	public Optional<Event> findByDateBefore(Date d);
 	
 	public Iterable<Event> findByTitre(String titre);
 	
