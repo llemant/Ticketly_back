@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +29,8 @@ public class Event {
 	private String artiste;
 	private String titre;
 	private int place;
+	@Temporal(TemporalType.DATE)
+	@CreationTimestamp 
 	private Date date;
 	private String heure;
 	private String genre;

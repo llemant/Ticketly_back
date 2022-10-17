@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -72,11 +73,14 @@ public class UserRest {
 
 	}
 
-	@PostMapping("token/add/{nbTokenAchetes}/{id}")
-	public void addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
+	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
+	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
-			u.get().setNbToken(newNbToken);
+			User newUser = u.get();
+			newUser.setNbToken(newNbToken);
+			final User updatedUser = userRepos.save(newUser);
+			return newNbToken;
 	}
 		
 }
