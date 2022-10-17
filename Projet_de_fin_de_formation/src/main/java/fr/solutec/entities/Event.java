@@ -28,6 +28,7 @@ public class Event {
 	private String heure;
 	private String genre;
 	private int prix;
+	private String photo;
 	@ManyToOne
 	private User organisateur;
 	@ManyToOne

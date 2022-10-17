@@ -62,7 +62,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		});
 		
 		
-		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney 1", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, u3, l1);
+		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney 1", 30000, d.parse("10/12/2022"), "20h", "Concert", 55,"https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, l1);
 
 		
 		Stream.of(e1).forEach(e -> {
@@ -84,6 +84,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private String heure;
 	private String genre;
 	private int prix;
+	private String photo;
 	private User organisateur;
 	private Lieu lieu;
  */
