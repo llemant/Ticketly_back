@@ -61,13 +61,13 @@ public class UserRest {
 	}
 
 	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
-	public void addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
+	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
 			User newUser = u.get();
 			newUser.setNbToken(newNbToken);
 			final User updatedUser = userRepos.save(newUser);
-			
+			return newNbToken;
 	}
 	
 }
