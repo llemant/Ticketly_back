@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class UserRest {
 		u.setOrganisateur(false);
 		return userRepos.save(u);
 	}
-	
+
 	@PostMapping("organisateur")
 	public User createOrganiser(@RequestBody User u) {
 		u.setOrganisateur(true);
@@ -50,7 +51,7 @@ public class UserRest {
 	public Optional<User> getOneUserByLogin(@PathVariable String login) {
 		return userRepos.findByLogin(login);
 	}
-	
+
 	@GetMapping("user/email/{email}")
 	public Optional<User> getOneUserByEmail(@PathVariable String email) {
 		return userRepos.findByEmail(email);
@@ -70,17 +71,42 @@ public class UserRest {
 		} else {
 			return null;
 		}
-
 	}
 
 	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
 	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
-			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
-			User newUser = u.get();
-			newUser.setNbToken(newNbToken);
-			final User updatedUser = userRepos.save(newUser);
-			return newNbToken;
+		int newNbToken = u.get().getNbToken() + nbTokenAchetes;
+		User newUser = u.get();
+		newUser.setNbToken(newNbToken);
+		final User updatedUser = userRepos.save(newUser);
+		return newNbToken;
 	}
-		
+
+	@DeleteMapping("account/{login}")
+	public boolean deleteAccount(@PathVariable String login) {
+		if (getOneUserByLogin(login).isPresent()) {
+			userRepos.delete(getOneUserByLogin(login).get());
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@PutMapping("modif/user/{login}")
+	public User editUser(@RequestBody User u, @PathVariable String login) {
+		Long id = getOneUserByLogin(login).get().getId();
+		u.setId(id);
+		u.setOrganisateur(false);
+		return userRepos.save(u);
+	}
+	
+	@PutMapping("modif/orga/{login}")
+	public User editOrga(@RequestBody User u, @PathVariable String login) {
+		Long id = getOneUserByLogin(login).get().getId();
+		u.setId(id);
+		u.setOrganisateur(true);
+		return userRepos.save(u);
+	}
+
 }
