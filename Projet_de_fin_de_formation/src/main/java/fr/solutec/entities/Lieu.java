@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor 
-@AllArgsConstructor 
+@AllArgsConstructor
 @Data
 @Entity
 public class Lieu {
