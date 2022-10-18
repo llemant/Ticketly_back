@@ -76,11 +76,34 @@ public class UserRest {
 	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
 	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
-			int newNbToken = u.get().getNbToken() + nbTokenAchetes;
 			User newUser = u.get();
+			int newNbToken = newUser.getNbToken() + nbTokenAchetes;
+			int nbPointsAdd = (int)Math.round(0.2*nbTokenAchetes);
+			int newNbPoints = newUser.getNbPoint() + nbPointsAdd;
+			newUser.setNbToken(newNbToken);
+			newUser.setNbPoint(newNbPoints);
+			final User updatedUser = userRepos.save(newUser);
+			return newNbToken;
+	}
+
+	@PatchMapping("token/pay/{totalPaye}/{id}")
+	public int subtractTokens(@PathVariable int totalPaye, @PathVariable Long id) {
+		Optional<User> u = userRepos.findById(id);
+			User newUser = u.get();
+			int newNbToken = newUser.getNbToken() - totalPaye;
 			newUser.setNbToken(newNbToken);
 			final User updatedUser = userRepos.save(newUser);
 			return newNbToken;
+	}
+	
+	@PatchMapping("points/pay/{totalPaye}/{id}")
+	public int subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
+		Optional<User> u = userRepos.findById(id);
+			User newUser = u.get();
+			int newNbPoints = newUser.getNbPoint() - totalPayePoints;
+			newUser.setNbPoint(newNbPoints);
+			final User updatedUser = userRepos.save(newUser);
+			return newNbPoints;
 	}
 		
 }
