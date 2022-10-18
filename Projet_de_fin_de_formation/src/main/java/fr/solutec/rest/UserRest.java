@@ -91,7 +91,10 @@ public class UserRest {
 		Optional<User> u = userRepos.findById(id);
 			User newUser = u.get();
 			int newNbToken = newUser.getNbToken() - totalPaye;
+			int nbPointsAdd = (int)Math.round(0.2*totalPaye);
+			int newNbPoints = newUser.getNbPoint() + nbPointsAdd;
 			newUser.setNbToken(newNbToken);
+			newUser.setNbPoint(newNbPoints);
 			final User updatedUser = userRepos.save(newUser);
 			return newNbToken;
 	}
