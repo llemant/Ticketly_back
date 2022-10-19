@@ -5,6 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.stream.Stream;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,11 +20,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.solutec.entities.Achats;
 import fr.solutec.entities.Avantage;
 import fr.solutec.entities.Event;
+import fr.solutec.entities.Inscriptions;
 import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
 import fr.solutec.repository.AchatsRepository;
 import fr.solutec.repository.AvantageRepository;
 import fr.solutec.repository.EventRepository;
+import fr.solutec.repository.InscriptionsRepository;
 import fr.solutec.repository.LieuRepository;
 import fr.solutec.repository.UserRepository;
 
@@ -34,6 +43,8 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private AvantageRepository avantageRepos;
 	@Autowired
 	private AchatsRepository achatsRepos;
+	@Autowired
+	private InscriptionsRepository inscriptionRepos;
 
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -80,10 +91,12 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, null, u5, "Esic");
 		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, null, u3, "Paris");
 		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, null, u3, "Nancy");
+		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("19/10/2022"), "20h", "Apéritif Dinatoire", 10, null, u3, "ESIC baby");
+		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past", 100, d.parse("19/10/2021"), "20h", "Apéritif Dinatoire", 10, null, u3, "ESIC baby");
 
 
 		
-		Stream.of(e1, e2, e3, e4).forEach(e -> {
+		Stream.of(e1, e2, e3, e4, e5, e6).forEach(e -> {
 			eventRepos.save(e);
 		});
 		
@@ -103,24 +116,36 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			achatsRepos.save(b);
 		});	
 		
+		Inscriptions i1 = new Inscriptions(null, u5, e4, null, 2);
+		Inscriptions i2 = new Inscriptions(null, u5, e3, null, 1);
+		Inscriptions i3 = new Inscriptions(null, u4, e4, null, 2);
+		Inscriptions i4 = new Inscriptions(null, u3, e4, null, 2);
+		Inscriptions i5 = new Inscriptions(null, u3, e5, null, 2);
+		
+		Stream.of(i1, i2, i3, i4, i5).forEach(i -> {
+			inscriptionRepos.save(i);
+		});
+		
 		System.out.println("Run successful");
 	}
 
 }
 
 /*
- * structure model Event :
- * 
+ * @Id
+	@GeneratedValue
 	private Long id;
-	private String artiste;
-	private String titre;	
-	private int place;
-	private Date date;
-	private String heure;
-	private String genre;
-	private int prix;
-	private String photo;
-	private User organisateur;
-	private Lieu lieu;
+	
+	@ManyToOne
+	private User acheteur;
+	
+	@ManyToOne
+	private Event event;
+
+	@Temporal(TemporalType.DATE)
+	@CreationTimestamp
+	private Date dateInscription;
+	
+	private int ticketQuantity;
  */
 
