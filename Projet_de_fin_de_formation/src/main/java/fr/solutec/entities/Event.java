@@ -17,28 +17,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor 
-@AllArgsConstructor 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 public class Event {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String artiste;
-	private String titre;	
-	private int placedispo;
+//<<<<<<< HEAD
+	//private String titre;	
+	//private int placedispo;
+//=======
+	private String titre;
+	private int place;
+//>>>>>>> branch 'master' of https://github.com/llemant/Esic_project_Back
 	@Temporal(TemporalType.DATE)
 	@CreationTimestamp 
 	private Date date;
 	private String heure;
 	private String genre;
 	private int prix;
+	private String photo;
 	@ManyToOne
 	private User organisateur;
 	@ManyToOne
 	private Lieu lieu;
-	
-	
-	
-} 
+
+}
