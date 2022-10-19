@@ -2,6 +2,9 @@ package fr.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.stream.Stream;
 
@@ -43,12 +46,13 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetDeFinDeFormationApplication.class, args);
-		// System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
+		 System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
 
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 
 		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,
 				2500, null, null, 0);
