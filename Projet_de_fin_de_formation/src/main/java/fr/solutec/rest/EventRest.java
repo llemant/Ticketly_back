@@ -37,12 +37,8 @@ public class EventRest {
 	public Optional<Event> getAllEventByArtiste(@PathVariable String artiste) {
 		return eventRepos.findByArtiste(artiste);
 	}
-	//@GetMapping("event/lieu/{nom}")
-	//public Optional<Event> getOneEventByLieu(@PathVariable String nom) {
-		//return eventRepos.findByLieu(nom);
-	//}
 	
-	@PutMapping("event/{id}")
+	@PutMapping("modi/event/{id}")
 	public Event modiEvent(@RequestBody Event e, @PathVariable Long id) {
 		e.setId(id);
 		return eventRepos.save(e);
