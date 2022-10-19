@@ -2,6 +2,7 @@ package fr.solutec.entities;
 
 import java.sql.Blob;
 import java.util.Date;
+import java.time.LocalDateTime;  
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,23 +31,16 @@ public class Event {
 	@GeneratedValue
 	private Long id;
 	private String artiste;
-//<<<<<<< HEAD
-	//private String titre;	
-	//private int placedispo;
-//=======
 	private String titre;
 	private int nbPlace;
-//>>>>>>> branch 'master' of https://github.com/llemant/Esic_project_Back
-	@Temporal(TemporalType.DATE)
-	@CreationTimestamp 
+	@Temporal(TemporalType.DATE)	
 	private Date date;
 	private String heure;
 	private String genre;
 	private int prix;
-	private Blob image;
+	private String image;
 	@ManyToOne
 	private User organisateur;
-	@ManyToOne
-	private Lieu lieu;
+	private String lieu;
 
 }
