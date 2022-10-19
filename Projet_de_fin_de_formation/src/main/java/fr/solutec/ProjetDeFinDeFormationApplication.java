@@ -11,11 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.solutec.entities.Achats;
+import fr.solutec.entities.Amis;
 import fr.solutec.entities.Avantage;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
 import fr.solutec.repository.AchatsRepository;
+import fr.solutec.repository.AmisRepository;
 import fr.solutec.repository.AvantageRepository;
 import fr.solutec.repository.EventRepository;
 import fr.solutec.repository.LieuRepository;
@@ -34,12 +36,14 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private AvantageRepository avantageRepos;
 	@Autowired
 	private AchatsRepository achatsRepos;
+	@Autowired
+	private AmisRepository amisRepos;
 
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetDeFinDeFormationApplication.class, args);
-		System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
+		// System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
 
 	}
 
@@ -101,8 +105,22 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Stream.of(b1, b2, b3).forEach(b -> {
 			achatsRepos.save(b);
 		});
+		
+		
+		Amis ami1 = new Amis(null, true, null, u1, u2);
+		Amis ami2 = new Amis(null, false, null, u1, u3);
+		Amis ami3 = new Amis(null, true, null, u2, u3);
+		Amis ami4 = new Amis(null, true, null, u4, u1);
+		Amis ami5 = new Amis(null, true, null, u5, u2);
+		Amis ami6 = new Amis(null, false, null, u4, u2);
+		Amis ami7 = new Amis(null, true, null, u1, u5);
+		
+		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
+			amisRepos.save(ami);
+		});
+		
 
-		System.out.println("****************\n*****************\n☺♂☺♂☺♂  Run sera toujours, haha successful create by JoJO BONUS ****************\n*****************\n☺♂☺♂☺♂****************\n*****************\n");
+		System.out.println("****************\n****************\nLE PORT EST DÉJA OCCUPÉ \n*****************\n****************\n****************\n");
 	}
 
 }

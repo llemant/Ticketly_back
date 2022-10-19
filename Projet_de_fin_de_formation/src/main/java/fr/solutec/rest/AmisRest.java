@@ -11,5 +11,7 @@ public class AmisRest {
 	@Autowired
 	private AmisRepository amisRepos;  
 	
+
+	
 	
 }
