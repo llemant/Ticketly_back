@@ -44,25 +44,9 @@ public class InscriptionsRest {
 		return inscriptionRepos.findByAcheteur(acheteur);
 	}
 	
-	//marche pas, joel est censé m'aider à regler ça jeudi matin
 	@GetMapping("inscriptions/today/{acheteur}")
-	public List<Inscriptions> getAllTodayUserInscriptions(@PathVariable User acheteur) {	
-		ZoneId zonedId = ZoneId.of( "Europe/Paris" );
-        LocalDate today = LocalDate.now( zonedId );
-        
-        System.out.println( "today : " + today );
-        System.out.println("valueOfToday : " + java.sql.Date.valueOf(today));
-        
-		List<Inscriptions> inscriptions = new ArrayList<>();
-		for (Inscriptions i: getAllUserInscriptions(acheteur)) {
-			
-			System.out.println("date event : " + i.getEvent().getDate());
-			
-			if (i.getEvent().getDate() == java.sql.Date.valueOf(today)) {
-				inscriptions.add(i);
-			}
-		}
-		return inscriptions;
+	public List<Inscriptions> getAllTodayUserInscriptions(@PathVariable User acheteur) {
+		return inscriptionRepos.getEventToday(acheteur.getId());
 	}
 	
 	
