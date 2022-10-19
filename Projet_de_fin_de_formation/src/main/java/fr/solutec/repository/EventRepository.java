@@ -23,7 +23,5 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 
 	public Optional<Event> findByArtiste(String artiste);
 	
-	//public Iterable<Event> finBydateandHeure(Date date, String heure);
-	
 
 }
