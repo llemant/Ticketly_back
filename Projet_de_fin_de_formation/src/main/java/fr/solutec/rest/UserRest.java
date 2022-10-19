@@ -96,7 +96,7 @@ public class UserRest {
 			return newNbToken;
 	}
 
-	@PatchMapping("points/pay/{totalPaye}/{id}")
+	@PatchMapping("points/pay/{totalPayePoints}/{id}")
 	public int subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			User newUser = u.get();

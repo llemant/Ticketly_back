@@ -88,10 +88,11 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		});
 		
 		Avantage a1 = new Avantage(null, "Popcorn", 100);
-		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 100);
-		Avantage a3 = new Avantage(null, "Boisson gratuite", 100);
+		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 350);
+		Avantage a3 = new Avantage(null, "Boisson gratuite", 150);
+		Avantage a4 = new Avantage(null, "Paquet de bonbons", 100);
 		
-		Stream.of(a1, a2, a3).forEach(a -> {
+		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
 		});		
 		
