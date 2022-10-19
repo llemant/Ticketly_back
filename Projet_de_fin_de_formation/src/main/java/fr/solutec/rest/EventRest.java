@@ -37,27 +37,28 @@ public class EventRest {
 	public Optional<Event> getAllEventByArtiste(@PathVariable String artiste) {
 		return eventRepos.findByArtiste(artiste);
 	}
-	//@GetMapping("event/lieu/{nom}")
-	//public Optional<Event> getOneEventByLieu(@PathVariable String nom) {
-		//return eventRepos.findByLieu(nom);
-	//}
 	
-	@PutMapping("event/{id}")
+	@PutMapping("modi/event/{id}")
 	public Event modiEvent(@RequestBody Event e, @PathVariable Long id) {
 		e.setId(id);
 		return eventRepos.save(e);
 	}
+	
 	@GetMapping("event/after")
-	public Optional<Event> upcomingEvents() {
+	public Iterable<Event> upcomingEvents() {
 		Date d = new Date();
 		return eventRepos.findByDateAfter(d);
 	}
 
 	@GetMapping("event/before")
-	public Optional<Event> pastEvents() {
+	public Iterable<Event> pastEvents() {
 		Date d = new Date();
 		return eventRepos.findByDateBefore(d);
 	}
-	
+	@GetMapping("event/today")
+	public Iterable<Event> todayEvents() {
+		Date d = new Date();
+		return eventRepos.findByDate(d);
+	}
 
 }

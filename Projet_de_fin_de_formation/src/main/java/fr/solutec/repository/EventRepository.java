@@ -6,13 +6,14 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 import fr.solutec.entities.Event;
-import fr.solutec.entities.User;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
 	
-	public Optional<Event> findByDateAfter(Date d);
+	public Iterable<Event> findByDateAfter(Date d);
 
-	public Optional<Event> findByDateBefore(Date d);
+	public Iterable<Event> findByDateBefore(Date d);
+	
+	public Iterable<Event> findByDate(Date d);
 	
 	public Iterable<Event> findByTitre(String titre);
 	
@@ -21,8 +22,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	public Optional<Event> findByLieu(String lieu);
 
 	public Optional<Event> findByArtiste(String artiste);
-	
-	//public Iterable<Event> finBydateandHeure(Date date, String heure);
 	
 
 }

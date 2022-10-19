@@ -22,11 +22,9 @@ public class Achats implements Serializable {
 	@Id
 	@ManyToOne
 	private User user;
-	
 	@Id
 	@ManyToOne
 	private Avantage avantage;
-
 	private int quantite;
 	private int total;
 }

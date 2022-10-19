@@ -2,6 +2,7 @@ package fr.solutec.entities;
 
 import java.sql.Blob;
 import java.util.Date;
+import java.time.LocalDateTime;  
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Event {
 	private String artiste;
 	private String titre;
 	private int nbPlace;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)	
 	private Date date;
 	private String heure;
 	private String genre;
