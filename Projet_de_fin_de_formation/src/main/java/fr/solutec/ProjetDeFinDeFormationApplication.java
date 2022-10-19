@@ -10,9 +10,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.solutec.entities.Achats;
+import fr.solutec.entities.Avantage;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
+import fr.solutec.repository.AchatsRepository;
+import fr.solutec.repository.AvantageRepository;
 import fr.solutec.repository.EventRepository;
 import fr.solutec.repository.LieuRepository;
 import fr.solutec.repository.UserRepository;
@@ -26,6 +30,10 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private EventRepository eventRepos;	
 	@Autowired
 	private LieuRepository lieuRepos;
+	@Autowired
+	private AvantageRepository avantageRepos;
+	@Autowired
+	private AchatsRepository achatsRepos;
 
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -78,6 +86,22 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Stream.of(e1, e2, e3, e4).forEach(e -> {
 			eventRepos.save(e);
 		});
+		
+		Avantage a1 = new Avantage(null, "Popcorn", 100);
+		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 100);
+		Avantage a3 = new Avantage(null, "Boisson gratuite", 100);
+		
+		Stream.of(a1, a2, a3).forEach(a -> {
+			avantageRepos.save(a);
+		});		
+		
+		Achats b1 = new Achats(u1, a1, 2, 200);
+		Achats b2 = new Achats(u2, a2, 1, 100);
+		Achats b3 = new Achats(u1, a3, 5, 500);
+		
+		Stream.of(b1, b2, b3).forEach(b -> {
+			achatsRepos.save(b);
+		});	
 		
 		System.out.println("Run successful");
 	}
