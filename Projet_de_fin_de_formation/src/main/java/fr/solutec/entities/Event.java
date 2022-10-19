@@ -27,7 +27,7 @@ public class Event {
 	private Long id;
 	private String artiste;
 	private String titre;	
-	private int place;
+	private int placedispo;
 	@Temporal(TemporalType.DATE)
 	@CreationTimestamp 
 	private Date date;
