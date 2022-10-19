@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 import fr.solutec.entities.Event;
-import fr.solutec.entities.User;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
 	

@@ -47,6 +47,7 @@ public class EventRest {
 		e.setId(id);
 		return eventRepos.save(e);
 	}
+	
 	@GetMapping("event/after")
 	public Iterable<Event> upcomingEvents() {
 		Date d = new Date();
@@ -58,10 +59,6 @@ public class EventRest {
 		Date d = new Date();
 		return eventRepos.findByDateBefore(d);
 	}
-	@GetMapping("event/today")
-	public Iterable<Event> todayEvents() {
-		Date d = new Date();
-		return eventRepos.findByDate(d);
-	}
 	
+
 }
