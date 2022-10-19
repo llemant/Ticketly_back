@@ -35,7 +35,7 @@ public class Event {
 	//private int placedispo;
 //=======
 	private String titre;
-	private int place;
+	private int nbPlace;
 //>>>>>>> branch 'master' of https://github.com/llemant/Esic_project_Back
 	@Temporal(TemporalType.DATE)
 	@CreationTimestamp 
