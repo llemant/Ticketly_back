@@ -1,5 +1,6 @@
 package fr.solutec.entities;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+
 @Entity
 public class Event {
 
@@ -32,7 +35,7 @@ public class Event {
 	//private int placedispo;
 //=======
 	private String titre;
-	private int place;
+	private int nbPlace;
 //>>>>>>> branch 'master' of https://github.com/llemant/Esic_project_Back
 	@Temporal(TemporalType.DATE)
 	@CreationTimestamp 
@@ -40,7 +43,7 @@ public class Event {
 	private String heure;
 	private String genre;
 	private int prix;
-	private String photo;
+	private Blob image;
 	@ManyToOne
 	private User organisateur;
 	@ManyToOne
