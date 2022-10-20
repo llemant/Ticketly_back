@@ -2,22 +2,36 @@ package fr.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.stream.Stream;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.solutec.entities.Achats;
+import fr.solutec.entities.Amis;
 import fr.solutec.entities.Avantage;
 import fr.solutec.entities.Event;
+import fr.solutec.entities.Inscriptions;
 import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
 import fr.solutec.repository.AchatsRepository;
+import fr.solutec.repository.AmisRepository;
 import fr.solutec.repository.AvantageRepository;
 import fr.solutec.repository.EventRepository;
+import fr.solutec.repository.InscriptionsRepository;
 import fr.solutec.repository.LieuRepository;
 import fr.solutec.repository.UserRepository;
 
@@ -34,17 +48,22 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private AvantageRepository avantageRepos;
 	@Autowired
 	private AchatsRepository achatsRepos;
+	@Autowired
+	private InscriptionsRepository inscriptionRepos;
+	@Autowired
+	private AmisRepository amisRepos;
 
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetDeFinDeFormationApplication.class, args);
-		System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
+		 System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
 
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 
 		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,
 				2500, null, null, 0);
@@ -73,22 +92,21 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			lieuRepos.save(l);
 		});
 
-
-
-
 		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney 1", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Chine");
 		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
 		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
 		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
+		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("19/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
+		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
 
-		Stream.of(e1, e2, e3, e4).forEach(e -> {
+		Stream.of(e1, e2, e3, e4, e5, e6).forEach(e -> {
 			eventRepos.save(e);
 		});
 
 		Avantage a1 = new Avantage(null, "Popcorn", 100);
-		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 100);
-		Avantage a3 = new Avantage(null, "Boisson gratuite", 100);		
-		Avantage a4 = new Avantage(null, "Paquet de bonbons", 100);
+		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 150);
+		Avantage a3 = new Avantage(null, "Boisson gratuite", 200);		
+		Avantage a4 = new Avantage(null, "Paquet de bonbons", 300);
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
@@ -101,16 +119,37 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Stream.of(b1, b2, b3).forEach(b -> {
 			achatsRepos.save(b);
 		});
+		
 
-		System.out.println("****************\n*****************\n☺♂☺♂☺♂  Run sera toujours, haha successful create by JoJO BONUS ****************\n*****************\n☺♂☺♂☺♂****************\n*****************\n");
+		Inscriptions i1 = new Inscriptions(null, u5, e4, null, 2);
+		Inscriptions i2 = new Inscriptions(null, u5, e3, null, 1);
+		Inscriptions i3 = new Inscriptions(null, u4, e4, null, 2);
+		Inscriptions i4 = new Inscriptions(null, u3, e4, null, 2);
+		Inscriptions i5 = new Inscriptions(null, u3, e5, null, 2);
+		
+		Stream.of(i1, i2, i3, i4, i5).forEach(i -> {
+			inscriptionRepos.save(i);
+		});
+		
+		System.out.println("Run successful");
+
+		
+		Amis ami1 = new Amis(null, true, null, u1, u2);
+		Amis ami2 = new Amis(null, false, null, u1, u3);
+		Amis ami3 = new Amis(null, true, null, u2, u3);
+		Amis ami4 = new Amis(null, true, null, u4, u1);
+		Amis ami5 = new Amis(null, true, null, u5, u2);
+		Amis ami6 = new Amis(null, false, null, u4, u2);
+		Amis ami7 = new Amis(null, true, null, u1, u5);
+		
+		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
+			amisRepos.save(ami);
+		});
+		
+
+		System.out.println("Main successful");
 	}
 
 }
 
-/*
- * structure model Event :
- * 
- * private Long id; private String artiste; private String titre; private int
- * place; private Date date; private String heure; private String genre; private
- * int prix; private String photo; private User organisateur; private Lieu lieu;
- */
+
