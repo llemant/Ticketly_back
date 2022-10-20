@@ -19,4 +19,5 @@ public class Avantage {
 	private Long id;
 	private String avantage;
 	private int prix;
+	private String image;
 }

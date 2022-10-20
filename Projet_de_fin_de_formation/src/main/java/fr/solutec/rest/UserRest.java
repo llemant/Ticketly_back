@@ -40,13 +40,6 @@ public class UserRest {
 		return userRepos.save(u);
 	}
 
-	@PutMapping("user/{id}")
-	public User modiUser(@RequestBody User u, @PathVariable Long id) {
-		u.setId(id);
-		return userRepos.save(u);
-
-	}
-
 	@GetMapping("user/login/{login}")
 	public Optional<User> getOneUserByLogin(@PathVariable String login) {
 		return userRepos.findByLogin(login);
@@ -97,13 +90,13 @@ public class UserRest {
 	}
 
 	@PatchMapping("points/pay/{totalPayePoints}/{id}")
-	public int subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
+	public User subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			User newUser = u.get();
 			int newNbPoints = newUser.getNbPoint() - totalPayePoints;
 			newUser.setNbPoint(newNbPoints);
-			final User updatedUser = userRepos.save(newUser);
-			return newNbPoints;
+			return userRepos.save(newUser);
+			//return newNbPoints;
 	}
 
 	@DeleteMapping("account/{login}")

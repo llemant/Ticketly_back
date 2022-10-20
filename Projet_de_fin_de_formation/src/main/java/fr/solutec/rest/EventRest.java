@@ -61,4 +61,5 @@ public class EventRest {
 		return eventRepos.findByDate(d);
 	}
 
+	
 }
