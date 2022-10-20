@@ -104,10 +104,10 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			eventRepos.save(e);
 		});
 
-		Avantage a1 = new Avantage(null, "Popcorn", 100);
-		Avantage a2 = new Avantage(null, "Masseur Shiatsu", 150);
-		Avantage a3 = new Avantage(null, "Boisson gratuite", 200);		
-		Avantage a4 = new Avantage(null, "Paquet de bonbons", 300);
+		Avantage a1 = new Avantage(null, "Popcorn", 100, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
+		Avantage a2 = new Avantage(null, "Coussin de massage", 1500, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y" );
+		Avantage a3 = new Avantage(null, "Boisson gratuite", 200, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");		
+		Avantage a4 = new Avantage(null, "Paquet de bonbons", 300, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
