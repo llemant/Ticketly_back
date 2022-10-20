@@ -32,7 +32,7 @@ public class EventRest {
 	@PostMapping("event")
 	public Event createEvent(@RequestBody Event e) {
 		User orga = e.getOrganisateur();
-		orga.setNbToken(orga.getNbToken() - 30000);
+		orga.setNbToken(orga.getNbToken() - 200);
 		userRepos.save(orga);
 		e.setOrganisateur(orga);
 		return eventRepos.save(e);
