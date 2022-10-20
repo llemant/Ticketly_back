@@ -96,10 +96,11 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
 		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
 		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
-		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("19/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
-		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
+		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("20/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
+		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past1", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
+		Event e7 = new Event(null, "Lelouiiiis", "Event of ze past2", 100, d.parse("25/12/2019"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
 
-		Stream.of(e1, e2, e3, e4, e5, e6).forEach(e -> {
+		Stream.of(e1, e2, e3, e4, e5, e6, e7).forEach(e -> {
 			eventRepos.save(e);
 		});
 
@@ -124,10 +125,13 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Inscriptions i1 = new Inscriptions(null, u5, e4, null, 2);
 		Inscriptions i2 = new Inscriptions(null, u5, e3, null, 1);
 		Inscriptions i3 = new Inscriptions(null, u4, e4, null, 2);
-		Inscriptions i4 = new Inscriptions(null, u3, e4, null, 2);
-		Inscriptions i5 = new Inscriptions(null, u3, e5, null, 2);
+		Inscriptions i4 = new Inscriptions(null, u3, e3, null, 2);
+		Inscriptions i5 = new Inscriptions(null, u3, e4, null, 2);
+		Inscriptions i6 = new Inscriptions(null, u3, e5, null, 2);
+		Inscriptions i7 = new Inscriptions(null, u3, e6, null, 2);
+		Inscriptions i8 = new Inscriptions(null, u3, e7, null, 2);
 		
-		Stream.of(i1, i2, i3, i4, i5).forEach(i -> {
+		Stream.of(i1, i2, i3, i4, i5, i6, i7, i8).forEach(i -> {
 			inscriptionRepos.save(i);
 		});
 		
