@@ -107,10 +107,12 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			eventRepos.save(e);
 		});
 
-		Avantage a1 = new Avantage(null, "Popcorn", 100, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
-		Avantage a2 = new Avantage(null, "Coussin de massage", 1500, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y" );
-		Avantage a3 = new Avantage(null, "Boisson gratuite", 200, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");		
-		Avantage a4 = new Avantage(null, "Paquet de bonbons", 300, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
+
+		Avantage a1 = new Avantage(null, "Boisson gratuite", 200, "https://i.imgur.com/9BlRrf4.png");		
+		Avantage a2 = new Avantage(null, "Paquet de bonbons", 300, "https://i.imgur.com/t0y9nyH.png");
+		Avantage a3 = new Avantage(null, "Billet pour un after", 600, "https://i.picsum.photos/id/452/314/200.jpg?hmac=Dwh6rSSPBGdfmNB0F2R--RO3MaZKeqyW4CVcDAiW-98");
+		Avantage a4 = new Avantage (null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
+		
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
