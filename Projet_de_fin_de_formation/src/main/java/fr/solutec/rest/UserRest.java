@@ -40,13 +40,6 @@ public class UserRest {
 		return userRepos.save(u);
 	}
 
-	@PutMapping("user/{id}")
-	public User modiUser(@RequestBody User u, @PathVariable Long id) {
-		u.setId(id);
-		return userRepos.save(u);
-
-	}
-
 	@GetMapping("user/login/{login}")
 	public Optional<User> getOneUserByLogin(@PathVariable String login) {
 		return userRepos.findByLogin(login);

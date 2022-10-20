@@ -46,8 +46,16 @@ public class InscriptionsRest {
 	
 	@GetMapping("inscriptions/today/{acheteur}")
 	public List<Inscriptions> getAllTodayUserInscriptions(@PathVariable User acheteur) {
-		return inscriptionRepos.getEventToday(acheteur.getId());
+		return inscriptionRepos.getInscriptionEventToday(acheteur.getId());
 	}
 	
+	@GetMapping("inscriptions/futur/{acheteur}")
+	public List<Inscriptions> getAllFuturUserInscriptions(@PathVariable User acheteur) {
+		return inscriptionRepos.getInscriptionEventFutur(acheteur.getId());
+	}
 	
+	@GetMapping("inscriptions/past/{acheteur}")
+	public List<Inscriptions> getAllPastUserInscriptions(@PathVariable User acheteur) {
+		return inscriptionRepos.getInscriptionEventPast(acheteur.getId());
+	}
 }
