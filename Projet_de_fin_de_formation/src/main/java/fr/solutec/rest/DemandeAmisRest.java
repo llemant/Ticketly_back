@@ -28,8 +28,9 @@ public class DemandeAmisRest {
 		return demandeAmisRepos.getMesAmis(monId);
 	}
 
-	@PostMapping("Amis")
+	@PostMapping("amis")
 	public DemandeAmis createDemandeAmis(@RequestBody DemandeAmis d) {
+		d.setAcceptation(null);
 		return demandeAmisRepos.save(d);
 	}
 
@@ -43,25 +44,28 @@ public class DemandeAmisRest {
 		}
 	}
 
-	@PatchMapping("Amis/Accepter/{idDemande}")
-	public boolean accepterDemande(@PathVariable Long idDemande) {
-		if (demandeAmisRepos.findById(idDemande).isPresent()) {
-			Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
+	@PatchMapping("amis/accepter/{idDemande}")
+	public DemandeAmis accepterDemande(@PathVariable Long idDemande) {
+		Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
+		
+		if (d.isPresent()) {
+			
 			d.get().setAcceptation(true);
-			return true;
+			return demandeAmisRepos.save(d.get());
 		} else {
-			return false;
+			return null;
 		}
 	}
 
-	@PatchMapping("Amis/Refuser/{idDemande}")
-	public boolean refuserDemande(@PathVariable Long idDemande) {
+	@PatchMapping("amis/refuser/{idDemande}")
+	public DemandeAmis refuserDemande(@PathVariable Long idDemande) {
 		if (demandeAmisRepos.findById(idDemande).isPresent()) {
 			Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
 			d.get().setAcceptation(false);
-			return true;
+			demandeAmisRepos.save(d.get());
+			return d.get();
 		} else {
-			return false;
+			return null;
 		}
 	}
 }
