@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Amis {
+public class DemandeAmis {
 	@Id	@GeneratedValue
 	private Long id; 
 	private Boolean acceptation;

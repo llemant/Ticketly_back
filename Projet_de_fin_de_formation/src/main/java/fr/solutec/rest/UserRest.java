@@ -90,13 +90,13 @@ public class UserRest {
 	}
 
 	@PatchMapping("points/pay/{totalPayePoints}/{id}")
-	public int subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
+	public User subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
 			User newUser = u.get();
 			int newNbPoints = newUser.getNbPoint() - totalPayePoints;
 			newUser.setNbPoint(newNbPoints);
-			final User updatedUser = userRepos.save(newUser);
-			return newNbPoints;
+			return userRepos.save(newUser);
+			//return newNbPoints;
 	}
 
 	@DeleteMapping("account/{login}")
