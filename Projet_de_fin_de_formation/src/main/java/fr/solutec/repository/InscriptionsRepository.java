@@ -16,7 +16,7 @@ public interface InscriptionsRepository extends CrudRepository<Inscriptions, Lon
 	@Query(value = "SELECT i FROM Inscriptions i WHERE i.acheteur.id = ?1 AND i.event.date = CURRENT_DATE")
 	public List<Inscriptions> getInscriptionEventToday(Long id);
 	
-	@Query(value = "SELECT i FROM Inscriptions i WHERE i.acheteur.id = ?1 AND i.event.date > CURRENT_DATE")
+	@Query(value = "SELECT i FROM Inscriptions i WHERE i.acheteur.id = ?1 AND i.event.date >= CURRENT_DATE")
 	public List<Inscriptions> getInscriptionEventFutur(Long id);
 	
 	@Query(value = "SELECT i FROM Inscriptions i WHERE i.acheteur.id = ?1 AND i.event.date < CURRENT_DATE")
