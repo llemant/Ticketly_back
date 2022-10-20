@@ -18,15 +18,23 @@ import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 //import fr.solutec.entities.UserEvent;
 import fr.solutec.repository.EventRepository;
+import fr.solutec.repository.UserRepository;
 
 
 @RestController @CrossOrigin("*")
 public class EventRest {
 	@Autowired
 	private EventRepository eventRepos;
+	
+	@Autowired
+	private UserRepository userRepos;
 
 	@PostMapping("event")
 	public Event createEvent(@RequestBody Event e) {
+		User orga = e.getOrganisateur();
+		orga.setNbToken(orga.getNbToken() - 30000);
+		userRepos.save(orga);
+		e.setOrganisateur(orga);
 		return eventRepos.save(e);
 	}
 
