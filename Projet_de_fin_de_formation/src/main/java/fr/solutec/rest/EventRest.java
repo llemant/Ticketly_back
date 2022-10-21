@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
-//import fr.solutec.entities.UserEvent;
 import fr.solutec.repository.EventRepository;
 import fr.solutec.repository.UserRepository;
 
