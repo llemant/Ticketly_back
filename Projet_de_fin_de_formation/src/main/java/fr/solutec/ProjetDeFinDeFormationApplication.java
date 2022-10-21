@@ -25,14 +25,12 @@ import fr.solutec.entities.DemandeAmis;
 import fr.solutec.entities.Avantage;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.Inscriptions;
-import fr.solutec.entities.Lieu;
 import fr.solutec.entities.User;
 import fr.solutec.repository.AchatsRepository;
 import fr.solutec.repository.DemandeAmisRepository;
 import fr.solutec.repository.AvantageRepository;
 import fr.solutec.repository.EventRepository;
 import fr.solutec.repository.InscriptionsRepository;
-import fr.solutec.repository.LieuRepository;
 import fr.solutec.repository.UserRepository;
 
 @SpringBootApplication
@@ -42,8 +40,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private UserRepository userRepos;
 	@Autowired
 	private EventRepository eventRepos;
-	@Autowired
-	private LieuRepository lieuRepos;
+
 	@Autowired
 	private AvantageRepository avantageRepos;
 	@Autowired
@@ -60,7 +57,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetDeFinDeFormationApplication.class, args);
-		 System.out.println("☺♂☺♂☺♂  Run successful create by JoJO  ☺♂☺♂☺♂");
+
 
 	}
 
@@ -83,36 +80,22 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			userRepos.save(u);
 		});
 
-		Lieu l1 = new Lieu(null, "France", "Paris", "Rue Francis de Pressensé, Saint-Denis, 93200", "StadedeFance",
-				80000);
-		Lieu l2 = new Lieu(null, "France", "Lille", "17 Place Mendès France, Lille, 59000", "Le Nouveau Siècle", 59000);
-		Lieu l3 = new Lieu(null, "Allemagne", "Berlin", "Friedrichstrasse 107, Berlin 10117", "Friedrichstadt-Palast",
-				10117);
-		Lieu l4 = new Lieu(null, "France", "Nancy", "10 rue Sonnini, Manoncourt-En-Vermois, 54210", "Domaine Des Anges",
-				54210);
-
-		Stream.of(l1, l2, l3, l4).forEach(l -> {
-			lieuRepos.save(l);
-		});
-
-		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, "https://www.cnc.fr/documents/36995/1603590/Affiche-Annecy-Festival-2022.jpg/0891600e-355b-baf3-fc74-10e65bf71b59?t=1646740149502", u3, "Chine");
-		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
-		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
-		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
-		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("21/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
-		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past1", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
-		Event e7 = new Event(null, "Lelouiiiis", "Event of ze past2", 100, d.parse("25/12/2019"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
+		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney", 90000, d.parse("10/12/2022"), "20h", "Musique", 55, "https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2021/05/28/node_1014342/51467238/public/2021/05/28/B9727176929Z.1_20210528101658_000%2BGQDI7DPPK.1-0.jpg?itok=u_iZxErV1622192833", u3, "Stade Vélodrome, Marseille");
+		Event e2 = new Event(null, "Nadal - Federer", "Exhibition de tennis", 15000, d.parse("25/10/2022"), "20h30", "Tennis", 15, "https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2019/09/19/2679911-55420530-2560-1440.jpg", u5, "Court Central, Roland-Garros");
+		Event e3 = new Event(null, "France-Brésil", "Finale de coupe du monde de football", 95000, d.parse("23/11/2022"), "21h", "Football", 70, "https://cdn-s-www.ledauphine.com/images/19053E86-E6C5-4F1D-A436-88F87E43CF80/NW_raw/l-equipe-de-france-de-football-a-gagne-la-deuxieme-coupe-du-monde-de-son-histoire-le-15-juillet-dernier-a-moscou-photo-franck-fife-afp-1545387456.jpg", u3, "Stade de Doha, Qatar");
+		Event e4 = new Event(null, "Dev6-22", "Présentation du projet ESIC", 20, d.parse("21/10/2022"), "15h30", "Conférence", 1, "https://images.ctfassets.net/rvt0uslu5yqp/MHmmM5FsvvQbHtuP1LSBU/788e0dae64e3a01f099d300dc5692fb3/woman_presenting_with_mentimeter.jpeg", u3, "Locaux ESIC, Malakoff");
+		Event e5 = new Event(null, "Dev6-22", "After work", 100, d.parse("21/10/2022"), "18h", "Apéritif Dinatoire", 10, "https://blog.bird-office.com/wp-content/uploads/2018/07/afterwork-min.jpg", u3, "Panthéon, Paris");
+		Event e6 = new Event(null, "Dev6-22", "Début de formation ESIC", 100, d.parse("12/09/2022"), "9h", "Formation", 10, "https://f.hellowork.com/blogdumoderateur/2022/03/selection-formation-gestion-projet-93.jpeg", u3, "Locaux ESIC, Malakoff");
+		Event e7 = new Event(null, "Dev6-22", "Début du projet ESIC", 100, d.parse("13/10/2022"), "9h", "Projet informatique", 10, "https://images.lanouvellerepublique.fr/image/upload/t_1020w/f_auto/5c517000e3a3e08c558b45ab.jpg", u3, "Locaux ESIC, Malakoff");
 
 		Stream.of(e1, e2, e3, e4, e5, e6, e7).forEach(e -> {
 			eventRepos.save(e);
 		});
 
-
 		Avantage a1 = new Avantage(null, "Boisson gratuite", 200, "https://i.imgur.com/9BlRrf4.png");		
 		Avantage a2 = new Avantage(null, "Paquet de bonbons", 300, "https://i.imgur.com/t0y9nyH.png");
 		Avantage a3 = new Avantage(null, "Billet pour un after", 600, "https://i.picsum.photos/id/452/314/200.jpg?hmac=Dwh6rSSPBGdfmNB0F2R--RO3MaZKeqyW4CVcDAiW-98");
-		Avantage a4 = new Avantage (null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
-		
+		Avantage a4 = new Avantage(null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
@@ -126,7 +109,6 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			achatsRepos.save(b);
 		});
 		
-
 		Inscriptions i1 = new Inscriptions(null, u5, e4, null, 2);
 		Inscriptions i2 = new Inscriptions(null, u5, e3, null, 1);
 		Inscriptions i3 = new Inscriptions(null, u4, e4, null, 2);
@@ -140,24 +122,20 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			inscriptionRepos.save(i);
 		});
 		
+		DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2);
+		DemandeAmis ami2 = new DemandeAmis(null, false, null, u1, u3);
+		DemandeAmis ami3 = new DemandeAmis(null, true, null, u2, u3);
+		DemandeAmis ami4 = new DemandeAmis(null, true, null, u4, u1);
+		DemandeAmis ami5 = new DemandeAmis(null, true, null, u5, u2);
+		DemandeAmis ami6 = new DemandeAmis(null, false, null, u4, u2);
+		DemandeAmis ami7 = new DemandeAmis(null, true, null, u1, u5);
+
+		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
+			demandeAmisRepos.save(ami);
+		});
+
 		System.out.println("Run successful");
 
-		
-		
-		  DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2); DemandeAmis
-		  ami2 = new DemandeAmis(null, false, null, u1, u3); DemandeAmis ami3 = new
-		  DemandeAmis(null, true, null, u2, u3); DemandeAmis ami4 = new
-		  DemandeAmis(null, true, null, u4, u1); DemandeAmis ami5 = new
-		  DemandeAmis(null, true, null, u5, u2); DemandeAmis ami6 = new
-		  DemandeAmis(null, false, null, u4, u2); DemandeAmis ami7 = new
-		  DemandeAmis(null, true, null, u1, u5);
-		  
-		  Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
-		  demandeAmisRepos.save(ami); });
-		 
-		
-
-		System.out.println("Main successful");
 	}
 
 }
