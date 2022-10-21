@@ -7,14 +7,13 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.stream.Stream;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CreationTimestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
