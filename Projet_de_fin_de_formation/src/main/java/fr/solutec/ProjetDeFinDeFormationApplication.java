@@ -69,15 +69,15 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		
 
 		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,
-				2500, null, null, 0);
+				2500, null, null, 0, "F");
 		User u2 = new User(null, "Defossez", "Lise", "defli", "defli123", "0600000002", "relise@esic.fr", false, 10000,
-				2500, null, null, 0);
+				2500, null, null, 0, "F");
 		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", true,
-				10000, 2500, null, null, 0);
+				10000, 2500, null, null, 0, "M");
 		User u4 = new User(null, "Lajus", "Quentin", "lajqu", "lajqu123", "0600000004", "laquentin@esic.fr", false,
-				10000, 2500, null, null, 0);
-		User u5 = new User(null, "Martinez Alonso", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr",
-				true, 20000, 3500, null, null, 0);
+				10000, 2500, null, null, 0, "M");
+		User u5 = new User(null, "Martinez", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr",
+				true, 20000, 3500, null, null, 0, "F");
 
 		Stream.of(u1, u2, u3, u4, u5).forEach(u -> {
 			userRepos.save(u);

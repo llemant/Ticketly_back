@@ -1,5 +1,6 @@
 package fr.solutec.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.entities.DemandeAmis;
+import fr.solutec.entities.User;
 import fr.solutec.repository.DemandeAmisRepository;
+import fr.solutec.repository.UserRepository;
 
 @RestController
 @CrossOrigin("*")
@@ -22,10 +25,23 @@ public class DemandeAmisRest {
 
 	@Autowired
 	private DemandeAmisRepository demandeAmisRepos;
+	@Autowired
+	private UserRepository userRepos;
 
 	@GetMapping("amis/{monId}")
-	public Iterable<DemandeAmis> allAmis(@PathVariable Long monId) {
-		return demandeAmisRepos.getMesAmis(monId);
+	public List<User> allAmis(@PathVariable Long monId) {
+		Iterable<DemandeAmis> dAmi = demandeAmisRepos.getMesAmis(monId);
+		User u = userRepos.findById(monId).get();
+		List<User> amis = new ArrayList<>();
+		for (DemandeAmis demandeAmis : dAmi) {
+			if (demandeAmis.getDemandeur() != u) {
+				amis.add(demandeAmis.getDemandeur());
+			} else {
+				amis.add(demandeAmis.getReceveur());
+			}
+		}
+
+		return amis;
 	}
 
 	@PostMapping("amis")
@@ -34,22 +50,26 @@ public class DemandeAmisRest {
 		return demandeAmisRepos.save(d);
 	}
 
-	@DeleteMapping("amis/{idDemande}")
-	public boolean deleteDemandeAmis(@PathVariable Long idDemande) {
-		if (demandeAmisRepos.findById(idDemande).isPresent()) {
-			demandeAmisRepos.delete(demandeAmisRepos.findById(idDemande).get());
-			return true;
-		} else {
-			return false;
+	@DeleteMapping("amis/{idUserConnect}/{idUserASupp}")
+	public boolean deleteDemandeAmis(@PathVariable Long idUserConnect, @PathVariable Long idUserASupp) {
+		Optional<DemandeAmis> demande1 = demandeAmisRepos.findByReceveurIdAndDemandeurId(idUserConnect, idUserASupp);
+		Optional<DemandeAmis> demande2 = demandeAmisRepos.findByDemandeurIdAndReceveurId(idUserConnect, idUserASupp);
+		if(demande1.isPresent()) {
+			demandeAmisRepos.delete(demande1.get());
+			
+		}else {
+			demandeAmisRepos.delete(demande2.get());
 		}
+
+		return true;
 	}
 
 	@PatchMapping("amis/accepter/{idDemande}")
 	public DemandeAmis accepterDemande(@PathVariable Long idDemande) {
 		Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
-		
+
 		if (d.isPresent()) {
-			
+
 			d.get().setAcceptation(true);
 			return demandeAmisRepos.save(d.get());
 		} else {
