@@ -32,6 +32,5 @@ public class User {
 	private String nomEntreprise;
 	private String siret;
 	private int nbTokenEvent;
-	//private boolean sexe;
 
 }

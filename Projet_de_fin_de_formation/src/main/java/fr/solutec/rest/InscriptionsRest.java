@@ -48,7 +48,6 @@ public class InscriptionsRest {
 		
 		Optional<User> orga = userRepos.findById(i.getEvent().getOrganisateur().getId());
 		orga.get().setNbTokenEvent((int) (orga.get().getNbTokenEvent() + 0.95*(i.getEvent().getPrix() * i.getTicketQuantity())));
-		System.out.println("help");
 		
 		return inscriptionRepos.save(i);
 	}
