@@ -66,15 +66,15 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		
 
 		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,
-				2500, null, null, 0);
+				2500, null, null, 0, "F");
 		User u2 = new User(null, "Defossez", "Lise", "defli", "defli123", "0600000002", "relise@esic.fr", false, 10000,
-				2500, null, null, 0);
+				2500, null, null, 0, "F");
 		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", true,
-				10000, 2500, null, null, 0);
+				10000, 2500, null, null, 0, "M");
 		User u4 = new User(null, "Lajus", "Quentin", "lajqu", "lajqu123", "0600000004", "laquentin@esic.fr", false,
-				10000, 2500, null, null, 0);
-		User u5 = new User(null, "Martinez Alonso", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr",
-				true, 20000, 3500, null, null, 0);
+				10000, 2500, null, null, 0, "M");
+		User u5 = new User(null, "Martinez", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr",
+				true, 20000, 3500, null, null, 0, "F");
 
 		Stream.of(u1, u2, u3, u4, u5).forEach(u -> {
 			userRepos.save(u);
@@ -86,7 +86,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
 		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
 		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
-		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("20/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
+		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("21/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
 		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past1", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
 		Event e7 = new Event(null, "Lelouiiiis", "Event of ze past2", 100, d.parse("25/12/2019"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
 
