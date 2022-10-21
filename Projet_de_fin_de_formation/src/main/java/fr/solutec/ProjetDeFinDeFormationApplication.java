@@ -80,26 +80,22 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			userRepos.save(u);
 		});
 
-
-
-		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, "https://www.cnc.fr/documents/36995/1603590/Affiche-Annecy-Festival-2022.jpg/0891600e-355b-baf3-fc74-10e65bf71b59?t=1646740149502", u3, "Chine");
-		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
-		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
-		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
-		Event e5 = new Event(null, "Lelouiiiis", "Event of ze day", 100, d.parse("21/10/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "ESIC baby");
-		Event e6 = new Event(null, "Lelouiiiis", "Event of ze past1", 100, d.parse("25/12/2020"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
-		Event e7 = new Event(null, "Lelouiiiis", "Event of ze past2", 100, d.parse("25/12/2019"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "In the past");
+		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney", 90000, d.parse("10/12/2022"), "20h", "Musique", 55, "https://www.cnc.fr/documents/36995/1603590/Affiche-Annecy-Festival-2022.jpg/0891600e-355b-baf3-fc74-10e65bf71b59?t=1646740149502", u3, "Stade Vélodrome, Marseille");
+		Event e2 = new Event(null, "Nadal - Federer", "Exhibition de tennis", 15000, d.parse("25/10/2022"), "20h30", "Tennis", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Court Central, Roland-Garros");
+		Event e3 = new Event(null, "France-Brésil", "Finale de coupe du monde de football", 95000, d.parse("23/11/2022"), "21h", "Football", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Stade de Doha, Qatar");
+		Event e4 = new Event(null, "Dev6-22", "Présentation du projet ESIC", 20, d.parse("21/10/2022"), "15h30", "Conférence", 1, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Locaux ESIC, Malakoff");
+		Event e5 = new Event(null, "Dev6-22", "After work", 100, d.parse("21/10/2022"), "18h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Panthéon, Paris");
+		Event e6 = new Event(null, "Dev6-22", "Début de formation ESIC", 100, d.parse("12/09/2022"), "9h", "Formation", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Locaux ESIC, Malakoff");
+		Event e7 = new Event(null, "Dev6-22", "Début du projet ESIC", 100, d.parse("13/10/2022"), "9h", "Projet informatique", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Locaux ESIC, Malakoff");
 
 		Stream.of(e1, e2, e3, e4, e5, e6, e7).forEach(e -> {
 			eventRepos.save(e);
 		});
 
-
 		Avantage a1 = new Avantage(null, "Boisson gratuite", 200, "https://i.imgur.com/9BlRrf4.png");		
 		Avantage a2 = new Avantage(null, "Paquet de bonbons", 300, "https://i.imgur.com/t0y9nyH.png");
 		Avantage a3 = new Avantage(null, "Billet pour un after", 600, "https://i.picsum.photos/id/452/314/200.jpg?hmac=Dwh6rSSPBGdfmNB0F2R--RO3MaZKeqyW4CVcDAiW-98");
-		Avantage a4 = new Avantage (null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
-		
+		Avantage a4 = new Avantage(null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);
@@ -113,7 +109,6 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			achatsRepos.save(b);
 		});
 		
-
 		Inscriptions i1 = new Inscriptions(null, u5, e4, null, 2);
 		Inscriptions i2 = new Inscriptions(null, u5, e3, null, 1);
 		Inscriptions i3 = new Inscriptions(null, u4, e4, null, 2);
@@ -127,21 +122,19 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			inscriptionRepos.save(i);
 		});
 		
+		DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2);
+		DemandeAmis ami2 = new DemandeAmis(null, false, null, u1, u3);
+		DemandeAmis ami3 = new DemandeAmis(null, true, null, u2, u3);
+		DemandeAmis ami4 = new DemandeAmis(null, true, null, u4, u1);
+		DemandeAmis ami5 = new DemandeAmis(null, true, null, u5, u2);
+		DemandeAmis ami6 = new DemandeAmis(null, false, null, u4, u2);
+		DemandeAmis ami7 = new DemandeAmis(null, true, null, u1, u5);
 
-		
-		
-		  DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2); DemandeAmis
-		  ami2 = new DemandeAmis(null, false, null, u1, u3); DemandeAmis ami3 = new
-		  DemandeAmis(null, true, null, u2, u3); DemandeAmis ami4 = new
-		  DemandeAmis(null, true, null, u4, u1); DemandeAmis ami5 = new
-		  DemandeAmis(null, true, null, u5, u2); DemandeAmis ami6 = new
-		  DemandeAmis(null, false, null, u4, u2); DemandeAmis ami7 = new
-		  DemandeAmis(null, true, null, u1, u5);
-		  
-		  Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
-		  demandeAmisRepos.save(ami); });
-		 
-		
+		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
+			demandeAmisRepos.save(ami);
+		});
+
+		System.out.println("Run successful");
 
 	}
 
