@@ -47,17 +47,25 @@ public class DemandeAmisRest {
 	@PostMapping("amis")
 	public DemandeAmis createDemandeAmis(@RequestBody DemandeAmis d) {
 		d.setAcceptation(null);
-		return demandeAmisRepos.save(d);
+		Optional<User> u = userRepos.findByLogin(d.getReceveur().getLogin());
+
+		if (u.isPresent()) {
+			d.setReceveur(u.get());
+			
+			return demandeAmisRepos.save(d);
+		} else {
+			return null;
+		}
 	}
 
 	@DeleteMapping("amis/{idUserConnect}/{idUserASupp}")
 	public boolean deleteDemandeAmis(@PathVariable Long idUserConnect, @PathVariable Long idUserASupp) {
 		Optional<DemandeAmis> demande1 = demandeAmisRepos.findByReceveurIdAndDemandeurId(idUserConnect, idUserASupp);
 		Optional<DemandeAmis> demande2 = demandeAmisRepos.findByDemandeurIdAndReceveurId(idUserConnect, idUserASupp);
-		if(demande1.isPresent()) {
+		if (demande1.isPresent()) {
 			demandeAmisRepos.delete(demande1.get());
-			
-		}else {
+
+		} else {
 			demandeAmisRepos.delete(demande2.get());
 		}
 
