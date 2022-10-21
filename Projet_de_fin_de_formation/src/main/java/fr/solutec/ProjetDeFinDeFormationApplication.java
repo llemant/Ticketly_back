@@ -125,12 +125,12 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2);
 		DemandeAmis ami2 = new DemandeAmis(null, false, null, u1, u3);
 		DemandeAmis ami3 = new DemandeAmis(null, true, null, u2, u3);
-		DemandeAmis ami4 = new DemandeAmis(null, true, null, u4, u1);
+	//	DemandeAmis ami4 = new DemandeAmis(null, false, null, u4, u1);
 		DemandeAmis ami5 = new DemandeAmis(null, true, null, u5, u2);
 		DemandeAmis ami6 = new DemandeAmis(null, false, null, u4, u2);
 		DemandeAmis ami7 = new DemandeAmis(null, true, null, u1, u5);
 
-		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
+		Stream.of(ami1, ami2, ami3, ami5, ami6, ami7).forEach(ami -> {
 			demandeAmisRepos.save(ami);
 		});
 

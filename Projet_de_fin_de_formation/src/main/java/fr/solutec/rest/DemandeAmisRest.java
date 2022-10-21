@@ -31,27 +31,37 @@ public class DemandeAmisRest {
 	@GetMapping("amis/{monId}")
 	public List<User> allAmis(@PathVariable Long monId) {
 		Iterable<DemandeAmis> dAmi = demandeAmisRepos.getMesAmis(monId);
-		User u = userRepos.findById(monId).get();
-		List<User> amis = new ArrayList<>();
-		for (DemandeAmis demandeAmis : dAmi) {
-			if (demandeAmis.getDemandeur() != u) {
-				amis.add(demandeAmis.getDemandeur());
-			} else {
-				amis.add(demandeAmis.getReceveur());
+		Optional<User> u = userRepos.findById(monId);
+		if(u.isPresent()) {
+			List<User> amis = new ArrayList<>();
+			for (DemandeAmis demandeAmis : dAmi) {
+				if (demandeAmis.getDemandeur() != u.get()  /* && demandeAmis.getAcceptation() == true*/) {
+					amis.add(demandeAmis.getDemandeur());
+				} else {
+					amis.add(demandeAmis.getReceveur());
+				}
 			}
-		}
 
-		return amis;
+			return amis;
+		}else {
+			return null;
+		}
+		
+	}
+
+	@GetMapping("amis/demande/{monId}")
+	public List<DemandeAmis> allDemande(@PathVariable Long monId) {
+		return demandeAmisRepos.findByReceveurIdAndAcceptationFalse(monId);
 	}
 
 	@PostMapping("amis")
 	public DemandeAmis createDemandeAmis(@RequestBody DemandeAmis d) {
-		d.setAcceptation(null);
+		// d.setAcceptation(null);
 		Optional<User> u = userRepos.findByLogin(d.getReceveur().getLogin());
 
 		if (u.isPresent()) {
 			d.setReceveur(u.get());
-			
+
 			return demandeAmisRepos.save(d);
 		} else {
 			return null;

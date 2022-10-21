@@ -14,6 +14,8 @@ public interface DemandeAmisRepository extends CrudRepository<DemandeAmis, Long>
 	public List<DemandeAmis> findByDemandeur(User demandeur);
 
 	public List<DemandeAmis> findByReceveur(User receveur);
+	
+	public List<DemandeAmis> findByReceveurIdAndAcceptationFalse(Long idR);
 
 	public Optional<DemandeAmis> findByReceveurIdAndDemandeurId(Long idR, Long idD);
 	public Optional<DemandeAmis> findByDemandeurIdAndReceveurId(Long idR, Long idD);
