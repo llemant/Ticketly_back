@@ -95,7 +95,7 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			lieuRepos.save(l);
 		});
 
-		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney 1", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, "https://www.cnc.fr/documents/36995/1603590/Affiche-Annecy-Festival-2022.jpg/0891600e-355b-baf3-fc74-10e65bf71b59?t=1646740149502", u3, "Chine");
+		Event e1 = new Event(null, "Indochine", "Concert Indochine The Last Tourney", 30000, d.parse("10/12/2022"), "20h", "Concert", 55, "https://www.cnc.fr/documents/36995/1603590/Affiche-Annecy-Festival-2022.jpg/0891600e-355b-baf3-fc74-10e65bf71b59?t=1646740149502", u3, "Chine");
 		Event e2 = new Event(null, "Caroline Martinez", "Caro fait son One Woman Show", 6300, d.parse("19/02/2023"), "20h30", "Humour", 15, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u5, "Esic");
 		Event e3 = new Event(null, "", "France-Brésil", 50000, d.parse("23/12/2022"), "20h", "Football Masculin", 70, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Paris");
 		Event e4 = new Event(null, "Ahadi Mahaboubi", "Tous à Nancy pour Nöel", 100, d.parse("25/12/2022"), "20h", "Apéritif Dinatoire", 10, "https://images.midilibre.fr/api/v1/images/view/626278a83188675ed45b26e4/large/image.jpg?v=2", u3, "Nancy");
@@ -107,10 +107,12 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 			eventRepos.save(e);
 		});
 
-		Avantage a1 = new Avantage(null, "Popcorn", 100, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
-		Avantage a2 = new Avantage(null, "Coussin de massage", 1500, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y" );
-		Avantage a3 = new Avantage(null, "Boisson gratuite", 200, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");		
-		Avantage a4 = new Avantage(null, "Paquet de bonbons", 300, "https://i.picsum.photos/id/60/314/200.jpg?hmac=NZBpOs3xK_iBNnD-jU1hBC17kKfkKMJrqbr44sgCA9Y");
+
+		Avantage a1 = new Avantage(null, "Boisson gratuite", 200, "https://i.imgur.com/9BlRrf4.png");		
+		Avantage a2 = new Avantage(null, "Paquet de bonbons", 300, "https://i.imgur.com/t0y9nyH.png");
+		Avantage a3 = new Avantage(null, "Billet pour un after", 600, "https://i.picsum.photos/id/452/314/200.jpg?hmac=Dwh6rSSPBGdfmNB0F2R--RO3MaZKeqyW4CVcDAiW-98");
+		Avantage a4 = new Avantage (null, "Des fraises", 240, "https://i.picsum.photos/id/1080/314/200.jpg?hmac=KmtqyVGIWsaFw6_F6ptifhZsvPsxY0OJB07AgMqvBA0");
+		
 		
 		Stream.of(a1, a2, a3, a4).forEach(a -> {
 			avantageRepos.save(a);

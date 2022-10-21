@@ -69,5 +69,13 @@ public class EventRest {
 		Date d = new Date();
 		return eventRepos.findByDate(d);
 	}
+	@GetMapping("eventorga/{id}")
+	public Iterable<Event> getAllEventByOrganisateurId(@PathVariable Long id) {
+		return eventRepos.findByOrganisateurId(id);
+	}
+	@GetMapping("eventorga/past/{id}")
+	public Iterable<Event> getAllEventByOrganisateurIdPast(@PathVariable Long id) {
+		return eventRepos.findByOrganisateurIdPast(id);
+	}
 
 }

@@ -3,9 +3,11 @@ package fr.solutec.repository;
 import java.util.Date;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import fr.solutec.entities.Event;
+import fr.solutec.entities.User;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
 	
@@ -22,6 +24,12 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	public Optional<Event> findByLieu(String lieu);
 
 	public Optional<Event> findByArtiste(String artiste);
+	
+	@Query(value = "SELECT e FROM Event e WHERE e.organisateur.id = ?1 AND e.date < CURRENT_DATE")
+	public Iterable<Event> findByOrganisateurIdPast(Long id);
+	
+	
+	public Iterable<Event> findByOrganisateurId(Long id);
 	
 
 }
