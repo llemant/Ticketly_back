@@ -27,46 +27,47 @@ import fr.solutec.repository.UserRepository;
 @RestController
 @CrossOrigin("*")
 public class InscriptionsRest {
-	
+
 	@Autowired
 	private InscriptionsRepository inscriptionRepos;
-	
+
 	@Autowired
 	private UserRepository userRepos;
-	
+
 	@GetMapping("inscriptions")
 	public Iterable<Inscriptions> getAllInscriptions() {
 		return inscriptionRepos.findAll();
 	}
-	
+
 	@PostMapping("inscription")
 	public Inscriptions createInscription(@RequestBody Inscriptions i) {
 		Optional<User> user = userRepos.findById(i.getAcheteur().getId());
 		user.get().setNbToken(user.get().getNbToken() - (i.getEvent().getPrix() * i.getTicketQuantity()));
 		userRepos.save(user.get());
 		i.setAcheteur(user.get());
-		
+
 		Optional<User> orga = userRepos.findById(i.getEvent().getOrganisateur().getId());
-		orga.get().setNbTokenEvent((int) (orga.get().getNbTokenEvent() + 0.95*(i.getEvent().getPrix() * i.getTicketQuantity())));
-		
+		orga.get().setNbTokenEvent(
+				(int) (orga.get().getNbTokenEvent() + 0.95 * (i.getEvent().getPrix() * i.getTicketQuantity())));
+
 		return inscriptionRepos.save(i);
 	}
-	
+
 	@GetMapping("inscriptions/{acheteur}")
-	public Iterable<Inscriptions> getAllUserInscriptions(@PathVariable User acheteur) {		
+	public Iterable<Inscriptions> getAllUserInscriptions(@PathVariable User acheteur) {
 		return inscriptionRepos.findByAcheteur(acheteur);
 	}
-	
+
 	@GetMapping("inscriptions/today/{acheteur}")
 	public List<Inscriptions> getAllTodayUserInscriptions(@PathVariable User acheteur) {
 		return inscriptionRepos.getInscriptionEventToday(acheteur.getId());
 	}
-	
+
 	@GetMapping("inscriptions/futur/{acheteur}")
 	public List<Inscriptions> getAllFuturUserInscriptions(@PathVariable User acheteur) {
 		return inscriptionRepos.getInscriptionEventFutur(acheteur.getId());
 	}
-	
+
 	@GetMapping("inscriptions/past/{acheteur}")
 	public List<Inscriptions> getAllPastUserInscriptions(@PathVariable User acheteur) {
 		return inscriptionRepos.getInscriptionEventPast(acheteur.getId());

@@ -16,17 +16,16 @@ import fr.solutec.repository.UserRepository;
 public class AvantageRest {
 	@Autowired
 	private AvantageRepository avantageRepos;
-	
+
 	@Autowired
 	private AchatsRepository achatsRepos;
-	
+
 	@Autowired
 	private UserRepository userRepos;
-	
-	
+
 	@GetMapping("avantages")
 	public Iterable<Avantage> getAllAvantages() {
 		return avantageRepos.findAll();
 	}
-	
+
 }

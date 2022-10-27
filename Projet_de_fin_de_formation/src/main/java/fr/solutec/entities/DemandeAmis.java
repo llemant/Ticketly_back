@@ -17,22 +17,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor 
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 public class DemandeAmis {
-	@Id	@GeneratedValue
-	private Long id; 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private Boolean acceptation;
-	
-	@CreationTimestamp 
+
+	@CreationTimestamp
 	private Date demandDate;
-	
+
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User demandeur;
-	
+
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User receveur;

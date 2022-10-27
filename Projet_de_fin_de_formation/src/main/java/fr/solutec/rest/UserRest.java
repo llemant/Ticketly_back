@@ -69,34 +69,34 @@ public class UserRest {
 	@PatchMapping("token/add/{nbTokenAchetes}/{id}")
 	public int addTokens(@PathVariable int nbTokenAchetes, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
-			User newUser = u.get();
-			int newNbToken = newUser.getNbToken() + nbTokenAchetes;
-			int nbPointsAdd = (int)Math.round(0.2*nbTokenAchetes);
-			int newNbPoints = newUser.getNbPoint() + nbPointsAdd;
-			newUser.setNbToken(newNbToken);
-			newUser.setNbPoint(newNbPoints);
-			final User updatedUser = userRepos.save(newUser);
-			return newNbToken;
+		User newUser = u.get();
+		int newNbToken = newUser.getNbToken() + nbTokenAchetes;
+		int nbPointsAdd = (int) Math.round(0.2 * nbTokenAchetes);
+		int newNbPoints = newUser.getNbPoint() + nbPointsAdd;
+		newUser.setNbToken(newNbToken);
+		newUser.setNbPoint(newNbPoints);
+		final User updatedUser = userRepos.save(newUser);
+		return newNbToken;
 	}
 
 	@PatchMapping("token/pay/{totalPaye}/{id}")
 	public int subtractTokens(@PathVariable int totalPaye, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
-			User newUser = u.get();
-			int newNbToken = newUser.getNbToken() - totalPaye;
-			newUser.setNbToken(newNbToken);
-			final User updatedUser = userRepos.save(newUser);
-			return newNbToken;
+		User newUser = u.get();
+		int newNbToken = newUser.getNbToken() - totalPaye;
+		newUser.setNbToken(newNbToken);
+		final User updatedUser = userRepos.save(newUser);
+		return newNbToken;
 	}
 
 	@PatchMapping("points/pay/{totalPayePoints}/{id}")
 	public User subtractPoints(@PathVariable int totalPayePoints, @PathVariable Long id) {
 		Optional<User> u = userRepos.findById(id);
-			User newUser = u.get();
-			int newNbPoints = newUser.getNbPoint() - totalPayePoints;
-			newUser.setNbPoint(newNbPoints);
-			return userRepos.save(newUser);
-			//return newNbPoints;
+		User newUser = u.get();
+		int newNbPoints = newUser.getNbPoint() - totalPayePoints;
+		newUser.setNbPoint(newNbPoints);
+		return userRepos.save(newUser);
+		// return newNbPoints;
 	}
 
 	@DeleteMapping("account/{login}")
@@ -116,7 +116,7 @@ public class UserRest {
 		u.setOrganisateur(false);
 		return userRepos.save(u);
 	}
-	
+
 	@PutMapping("modif/orga/{login}")
 	public User editOrga(@RequestBody User u, @PathVariable String login) {
 		Long id = getOneUserByLogin(login).get().getId();

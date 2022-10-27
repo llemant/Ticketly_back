@@ -10,26 +10,24 @@ import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
-	
+
 	public Iterable<Event> findByDateAfter(Date d);
 
 	public Iterable<Event> findByDateBefore(Date d);
-	
-	public Iterable<Event> findByDate(Date d);
-	
-	public Iterable<Event> findByTitre(String titre);
-	
-	public Iterable<Event> findByGenre(String genre);
-	
-	public Optional<Event> findByLieu(String lieu);
 
-	public Optional<Event> findByArtiste(String artiste);
-	
+	public Iterable<Event> findByDate(Date d);
+
+	public Iterable<Event> findByTitre(String titre);
+
+	public Iterable<Event> findByGenre(String genre);
+
+	public Iterable<Event> findByLieu(String lieu);
+
+	public Iterable<Event> findByArtiste(String artiste);
+
 	@Query(value = "SELECT e FROM Event e WHERE e.organisateur.id = ?1 AND e.date < CURRENT_DATE")
 	public Iterable<Event> findByOrganisateurIdPast(Long id);
-	
-	
+
 	public Iterable<Event> findByOrganisateurId(Long id);
-	
 
 }

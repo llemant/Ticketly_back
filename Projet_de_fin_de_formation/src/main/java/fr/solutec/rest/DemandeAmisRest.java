@@ -32,21 +32,19 @@ public class DemandeAmisRest {
 	public List<User> allAmis(@PathVariable Long monId) {
 		Iterable<DemandeAmis> dAmi = demandeAmisRepos.getMesAmis(monId);
 		Optional<User> u = userRepos.findById(monId);
-		if(u.isPresent()) {
+		if (u.isPresent()) {
 			List<User> amis = new ArrayList<>();
 			for (DemandeAmis demandeAmis : dAmi) {
-				if (demandeAmis.getDemandeur() != u.get()  /* && demandeAmis.getAcceptation() == true*/) {
+				if (demandeAmis.getDemandeur() != u.get() /* && demandeAmis.getAcceptation() == true */) {
 					amis.add(demandeAmis.getDemandeur());
 				} else {
 					amis.add(demandeAmis.getReceveur());
 				}
 			}
-
 			return amis;
-		}else {
+		} else {
 			return null;
 		}
-		
 	}
 
 	@GetMapping("amis/demande/{monId}")
@@ -78,7 +76,6 @@ public class DemandeAmisRest {
 		} else {
 			demandeAmisRepos.delete(demande2.get());
 		}
-
 		return true;
 	}
 

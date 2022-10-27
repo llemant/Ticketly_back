@@ -2,7 +2,7 @@ package fr.solutec.entities;
 
 import java.sql.Blob;
 import java.util.Date;
-import java.time.LocalDateTime;  
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,17 +23,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
 public class Event {
-
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String artiste;
 	private String titre;
 	private int nbPlace;
-	@Temporal(TemporalType.DATE)	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private String heure;
 	private String genre;
@@ -42,5 +40,4 @@ public class Event {
 	@ManyToOne
 	private User organisateur;
 	private String lieu;
-
 }

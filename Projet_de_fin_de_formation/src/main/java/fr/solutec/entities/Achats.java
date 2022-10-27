@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @IdClass(AchatsConstraint.class)
-
 public class Achats implements Serializable {
 	@Id
 	@ManyToOne

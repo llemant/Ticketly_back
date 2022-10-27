@@ -29,9 +29,9 @@ public class AchatsRest {
 
 	@PostMapping("achat-bonus")
 	public Achats nouvelAchat(@RequestBody Achats a) {
-		
+
 		Optional<Avantage> avtg = avantageRepos.findById(a.getAvantage().getId());
-		if(avtg.isPresent()) {
+		if (avtg.isPresent()) {
 			a.setTotal(avtg.get().getPrix() * a.getQuantite());
 			return achatsRepos.save(a);
 		} else {

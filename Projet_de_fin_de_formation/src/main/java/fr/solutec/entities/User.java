@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-
 public class User {
 	@Id
 	@GeneratedValue
@@ -33,5 +32,4 @@ public class User {
 	private String siret;
 	private int nbTokenEvent;
 	private String sexe;
-
 }

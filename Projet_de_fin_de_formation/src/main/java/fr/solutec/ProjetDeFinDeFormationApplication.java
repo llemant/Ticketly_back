@@ -39,7 +39,6 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	private UserRepository userRepos;
 	@Autowired
 	private EventRepository eventRepos;
-
 	@Autowired
 	private AvantageRepository avantageRepos;
 	@Autowired
@@ -49,31 +48,20 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 	@Autowired
 	private InscriptionsRepository inscriptionRepos;
 	
-	
-
-
 	DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetDeFinDeFormationApplication.class, args);
-
-
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		
-
-		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,
-				2500, null, null, 0, "F");
-		User u2 = new User(null, "Defossez", "Lise", "defli", "defli123", "0600000002", "relise@esic.fr", false, 10000,
-				2500, null, null, 0, "F");
-		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", true,
-				10000, 2500, null, null, 0, "M");
-		User u4 = new User(null, "Lajus", "Quentin", "lajqu", "lajqu123", "0600000004", "laquentin@esic.fr", false,
-				10000, 2500, null, null, 0, "M");
-		User u5 = new User(null, "Martinez", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr",
-				true, 20000, 3500, null, null, 0, "F");
+		User u1 = new User(null, "Lemant", "Louis", "lemlo", "lemlo123", "0600000001", "lelouis@esic.fr", false, 10000,	2500, null, null, 0, "F");
+		User u2 = new User(null, "Defossez", "Lise", "defli", "defli123", "0600000002", "relise@esic.fr", false, 10000,	2500, null, null, 0, "F");
+		User u3 = new User(null, "Mahaboubi", "Ahadi", "mahah", "mahah123", "0600000003", "maahadi@esic.fr", true, 10000, 2500, null, null, 0, "M");
+		User u4 = new User(null, "Lajus", "Quentin", "lajqu", "lajqu123", "0600000004", "laquentin@esic.fr", false, 10000, 2500, null, null, 0, "M");
+		User u5 = new User(null, "Martinez", "Caroline", "Caro", "Caroo", "0600000005", "macarolinen@esic.fr", true, 20000, 3500, null, null, 0, "F");
 
 		Stream.of(u1, u2, u3, u4, u5).forEach(u -> {
 			userRepos.save(u);
@@ -124,19 +112,17 @@ public class ProjetDeFinDeFormationApplication implements CommandLineRunner {
 		DemandeAmis ami1 = new DemandeAmis(null, true, null, u1, u2);
 		DemandeAmis ami2 = new DemandeAmis(null, false, null, u1, u3);
 		DemandeAmis ami3 = new DemandeAmis(null, true, null, u2, u3);
-	//	DemandeAmis ami4 = new DemandeAmis(null, false, null, u4, u1);
+		DemandeAmis ami4 = new DemandeAmis(null, false, null, u4, u1);
 		DemandeAmis ami5 = new DemandeAmis(null, true, null, u5, u2);
 		DemandeAmis ami6 = new DemandeAmis(null, false, null, u4, u2);
 		DemandeAmis ami7 = new DemandeAmis(null, true, null, u1, u5);
 
-		Stream.of(ami1, ami2, ami3, ami5, ami6, ami7).forEach(ami -> {
+		Stream.of(ami1, ami2, ami3, ami4, ami5, ami6, ami7).forEach(ami -> {
 			demandeAmisRepos.save(ami);
 		});
 
 		System.out.println("Run successful");
 
 	}
-
 }
-
 
