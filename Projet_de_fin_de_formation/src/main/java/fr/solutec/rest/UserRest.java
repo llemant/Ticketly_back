@@ -30,8 +30,13 @@ public class UserRest {
 
 	@PostMapping("user")
 	public User createUser(@RequestBody User u) {
-		u.setOrganisateur(false);
-		return userRepos.save(u);
+		Optional<User> userWithSameLogin = userRepos.findByLogin(u.getLogin());
+		Optional<User> userWithSameEmail = userRepos.findByEmail(u.getLogin());
+		if (userWithSameLogin.isEmpty() && userWithSameEmail.isEmpty()) {
+			return userRepos.save(u);
+		} else {
+			return null;
+		}
 	}
 
 	@PostMapping("organisateur")
