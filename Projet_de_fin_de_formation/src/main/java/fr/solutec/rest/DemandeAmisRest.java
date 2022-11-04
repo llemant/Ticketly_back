@@ -35,7 +35,7 @@ public class DemandeAmisRest {
 		if (u.isPresent()) {
 			List<User> amis = new ArrayList<>();
 			for (DemandeAmis demandeAmis : dAmi) {
-				if (demandeAmis.getDemandeur() != u.get() /* && demandeAmis.getAcceptation() == true */) {
+				if (demandeAmis.getDemandeur() != u.get()) {
 					amis.add(demandeAmis.getDemandeur());
 				} else {
 					amis.add(demandeAmis.getReceveur());
@@ -48,18 +48,15 @@ public class DemandeAmisRest {
 	}
 
 	@GetMapping("amis/demande/{monId}")
-	public List<DemandeAmis> allDemande(@PathVariable Long monId) {
-		return demandeAmisRepos.findByReceveurIdAndAcceptationFalse(monId);
+	public List<DemandeAmis> allPendingDemande(@PathVariable Long monId) {
+		return demandeAmisRepos.findByReceveurIdAndResponseFalse(monId);
 	}
 
 	@PostMapping("amis")
 	public DemandeAmis createDemandeAmis(@RequestBody DemandeAmis d) {
-		// d.setAcceptation(null);
 		Optional<User> u = userRepos.findByLogin(d.getReceveur().getLogin());
-
 		if (u.isPresent()) {
 			d.setReceveur(u.get());
-
 			return demandeAmisRepos.save(d);
 		} else {
 			return null;

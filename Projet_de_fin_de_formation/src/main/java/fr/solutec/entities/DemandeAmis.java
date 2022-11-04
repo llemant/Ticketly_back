@@ -25,6 +25,7 @@ public class DemandeAmis {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private Boolean response;
 	private Boolean acceptation;
 
 	@CreationTimestamp
@@ -37,4 +38,5 @@ public class DemandeAmis {
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User receveur;
+	
 }
