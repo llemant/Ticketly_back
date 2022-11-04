@@ -33,6 +33,7 @@ public class UserRest {
 		Optional<User> userWithSameLogin = userRepos.findByLogin(u.getLogin());
 		Optional<User> userWithSameEmail = userRepos.findByEmail(u.getLogin());
 		if (userWithSameLogin.isEmpty() && userWithSameEmail.isEmpty()) {
+			u.setOrganisateur(false);
 			return userRepos.save(u);
 		} else {
 			return null;
@@ -41,8 +42,14 @@ public class UserRest {
 
 	@PostMapping("organisateur")
 	public User createOrganiser(@RequestBody User u) {
-		u.setOrganisateur(true);
-		return userRepos.save(u);
+		Optional<User> userWithSameLogin = userRepos.findByLogin(u.getLogin());
+		Optional<User> userWithSameEmail = userRepos.findByEmail(u.getLogin());
+		if (userWithSameLogin.isEmpty() && userWithSameEmail.isEmpty()) {
+			u.setOrganisateur(true);
+			return userRepos.save(u);
+		} else {
+			return null;
+		}
 	}
 
 	@GetMapping("user/login/{login}")

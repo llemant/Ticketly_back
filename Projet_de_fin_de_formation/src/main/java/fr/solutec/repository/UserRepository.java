@@ -17,8 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
 	public Optional<User> findByLoginAndPassword(String login, String password);
 	
-	@Query(value = "SELECT u FROM User u WHERE u.login = ?1")
-	public Optional<User> ExistingLogin(String login);
-
 }
 
