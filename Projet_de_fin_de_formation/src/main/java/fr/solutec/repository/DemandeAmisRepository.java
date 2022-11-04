@@ -21,6 +21,6 @@ public interface DemandeAmisRepository extends CrudRepository<DemandeAmis, Long>
 
 	public Optional<DemandeAmis> findByDemandeurIdAndReceveurId(Long idR, Long idD);
 
-	@Query(value = "SELECT a FROM DemandeAmis a WHERE a.receveur.id = ?1 OR a.demandeur.id = ?1 AND a.acceptation = true")
+	@Query(value = "SELECT a FROM DemandeAmis a WHERE (a.receveur.id = ?1 OR a.demandeur.id = ?1) AND a.acceptation = true")
 	public List<DemandeAmis> getMesAmis(Long id);
 }

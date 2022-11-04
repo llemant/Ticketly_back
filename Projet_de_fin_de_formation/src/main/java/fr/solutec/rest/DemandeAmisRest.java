@@ -57,6 +57,8 @@ public class DemandeAmisRest {
 		Optional<User> u = userRepos.findByLogin(d.getReceveur().getLogin());
 		if (u.isPresent()) {
 			d.setReceveur(u.get());
+			d.setResponse(false);
+			d.setAcceptation(false);
 			return demandeAmisRepos.save(d);
 		} else {
 			return null;
@@ -79,9 +81,8 @@ public class DemandeAmisRest {
 	@PatchMapping("amis/accepter/{idDemande}")
 	public DemandeAmis accepterDemande(@PathVariable Long idDemande) {
 		Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
-
 		if (d.isPresent()) {
-
+			d.get().setResponse(true);
 			d.get().setAcceptation(true);
 			return demandeAmisRepos.save(d.get());
 		} else {
@@ -91,8 +92,9 @@ public class DemandeAmisRest {
 
 	@PatchMapping("amis/refuser/{idDemande}")
 	public DemandeAmis refuserDemande(@PathVariable Long idDemande) {
-		if (demandeAmisRepos.findById(idDemande).isPresent()) {
-			Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
+		Optional<DemandeAmis> d = demandeAmisRepos.findById(idDemande);
+		if (d.isPresent()) {	
+			d.get().setResponse(true);
 			d.get().setAcceptation(false);
 			demandeAmisRepos.save(d.get());
 			return d.get();
@@ -100,4 +102,6 @@ public class DemandeAmisRest {
 			return null;
 		}
 	}
+	
+	
 }
